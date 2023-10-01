@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  app:
+    container_name: sir-soir
+    image: sir-soir
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    depends_on:
+      - dbmysql
+
+  dbmysql:
+    container_name: sir-soir-db
+    image: mysql:9.6
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: ""
+    volumes:
+      - ./sir-db-data:/var/lib/mysql/data

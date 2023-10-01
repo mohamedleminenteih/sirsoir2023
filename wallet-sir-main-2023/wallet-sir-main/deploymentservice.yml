@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-sir-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app-sir
+  template:
+    metadata:
+      labels:
+        app: app-sir
+    spec:
+      containers:
+        - name: app-sir
+          image: sirsoir2023/sir-soir:latest
+          ports:
+            - containerPort: 8080
